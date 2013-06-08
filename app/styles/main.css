@@ -1,0 +1,56 @@
+/* Will be compiled down to a single stylesheet with your sass files */
+.container {
+	padding: 10px 0;
+}
+
+h1 {
+	width: 100;
+	padding-left: auto;
+	padding-right: auto;
+}
+
+ul {
+	list-style-type: none;
+}
+
+li.job {
+	background-color: #bdc3c7;
+	border: 2px solid #7f8c8d;
+	padding: 2px 5px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	margin-bottom: 15px;
+}
+
+body {
+	background-color: #ecf0f1;
+}
+
+hr {
+	width: 100%;
+	color: #bdc3c7;
+	background-color: #bdc3c7;
+	margin: 2px 0;
+	border-bottom: 1px solid #bdc3c7;
+}
+
+.inline li {
+	display: inline;
+}
+
+ul.inline {
+	display: inline;
+}
+
+div#pageLimits {
+	padding-bottom: 10px;
+	text-align: right;
+}
+
+div#pagination {
+	text-align: center;
+}
+
+#pagination ul li {
+	padding: 0 10px;
+}

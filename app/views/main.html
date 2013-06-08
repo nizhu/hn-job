@@ -1,0 +1,25 @@
+<h1>Hacker News Job Thread</h1>
+<div id="pageLimits">
+	Results per page:
+	<ul class="inline">
+		<li><a href="/#/?start={{start}}&limit=5">5</a></li>
+		<li><a href="/#/?start={{start}}&limit=10">10</a></li>
+		<li><a href="/#/?start={{start}}&limit=25">25</a></li>
+		<li><a href="/#/?start={{start}}&limit=100">100</a></li>
+	</ul>
+</div>
+<ul>
+  <li class="job" ng-repeat="result in results">
+  	<div>Posted by {{result.item.username}} at {{result.item.create_ts}} - <a href="https://news.ycombinator.com/item?id={{result.item.id}}">Link</a></div>
+  	<hr/>
+  	<div ng-bind-html-unsafe="result.item.text"></div>
+  </li>
+</ul>
+<div id="pagination">
+	<ul class="inline">
+		<li ng-show="showFirstPageLink()"><a href="/#/?limit={{limit}}">First Page</a></li>
+		<li ng-show="prevStart"><a href="/#/?start={{prevStart}}&limit={{limit}}">Previous Page</a></li>
+		<li ng-show="nextStart"><a href="/#/?start={{nextStart}}&limit={{limit}}">Next Page</a></li>
+		<li ng-show="lastStart"><a href="/#/?start={{lastStart}}&limit={{limit}}">Last Page</a></li>
+	</ul>
+</div>
