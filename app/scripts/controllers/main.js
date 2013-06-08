@@ -91,14 +91,14 @@ angular.module('hnhtApp')
         } else {
           qStr =  qStr + ' ' + $scope.keywordInput;
         }
-        $location.path('/').search('start=' + start + '&limit=' + limit + '&q=' + qStr);
+        $location.path('/').search('limit=' + limit + '&q=' + qStr);
       }
     };
 
     $scope.removeKeyword = function(keyword){
       if (removeElement(q, keyword)){
         var qStr = q.join(' ');
-        $location.path('/').search('start=' + start + '&limit=' + limit + '&q=' + qStr);
+        $location.path('/').search('limit=' + limit + '&q=' + qStr);
       }
     };
 
