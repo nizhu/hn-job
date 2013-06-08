@@ -1,12 +1,11 @@
 /* Will be compiled down to a single stylesheet with your sass files */
 .container {
-	padding: 10px 0;
+	padding: 25px 0;
 }
 
 h1 {
-	width: 100;
-	padding-left: auto;
-	padding-right: auto;
+	margin-top: 20px;
+	display: inline;
 }
 
 ul {
@@ -39,7 +38,7 @@ hr {
 }
 
 ul.inline {
-	display: inline;
+	display: inline-block;
 }
 
 div#pageLimits {
@@ -53,4 +52,29 @@ div#pagination {
 
 #pagination ul li {
 	padding: 0 10px;
+}
+
+#keywords ul li {
+	padding: 5px 10px;
+	background-color: #ecf0f1;
+	color: #27ae60;
+	border: 2px solid #27ae60;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	margin: 4px 2px;
+	cursor: hand;
+	cursor: pointer;
+	float:left;
+}
+
+form {
+	margin: 0;
+}
+
+input {
+	height: 20px;
+	font-size: 14px;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	line-height: 20px;
 }

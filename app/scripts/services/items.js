@@ -7,6 +7,8 @@ angular.module('hnResource', ['ngResource'])
       get: {
         method: 'JSONP',
         params: {
+          'highlight[markup_items]': true,
+          'q': 'san+bay',
           'filter[fields][parent_sigid]': '5803764-367ff',
           'filter[fields][type]': 'comment',
           'sortby': 'create_ts desc',

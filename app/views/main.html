@@ -1,25 +1,36 @@
 <h1>Hacker News Job Thread</h1>
+<form class="keywords pull-right">
+  <input class="input-xlarge" type="txt" placeholder="Search Keywords" ng-model="keywordInput" />
+  <button id='addBtn' class="btn" ng-click='addKeyword();'>Add</button>
+</form>
 <div id="pageLimits">
-	Results per page:
-	<ul class="inline">
-		<li><a href="/#/?start={{start}}&limit=5">5</a></li>
-		<li><a href="/#/?start={{start}}&limit=10">10</a></li>
-		<li><a href="/#/?start={{start}}&limit=25">25</a></li>
-		<li><a href="/#/?start={{start}}&limit=100">100</a></li>
-	</ul>
+  Results per page:
+  <ul class="inline">
+    <li><a href="/#/?start={{start}}&limit=5&q={{qStr}}">5</a></li>
+    <li><a href="/#/?start={{start}}&limit=10&q={{qStr}}">10</a></li>
+    <li><a href="/#/?start={{start}}&limit=25&q={{qStr}}">25</a></li>
+    <li><a href="/#/?start={{start}}&limit=100&q={{qStr}}">100</a></li>
+  </ul>
 </div>
+<div ng-show="keywords" id="keywords">
+  <ul class="inline">
+    <li ng-click="removeKeyword(keyword)" class="keyword" ng-repeat="keyword in keywords">{{keyword}}  X</li>
+  </ul>
+</div>
+<div ng-show="results.length">Showing {{start + 1}} to {{end}} of {{total}}</div>
 <ul>
   <li class="job" ng-repeat="result in results">
-  	<div>Posted by {{result.item.username}} at {{result.item.create_ts}} - <a href="https://news.ycombinator.com/item?id={{result.item.id}}">Link</a></div>
-  	<hr/>
-  	<div ng-bind-html-unsafe="result.item.text"></div>
+    <div>Posted by {{result.item.username}} at {{result.item.create_ts}} - <a href="https://news.ycombinator.com/item?id={{result.item.id}}">Link</a></div>
+    <hr/>
+    <div ng-bind-html-unsafe="result.item.text"></div>
   </li>
 </ul>
+<div ng-hide="results.length">No results found</div>
 <div id="pagination">
-	<ul class="inline">
-		<li ng-show="showFirstPageLink()"><a href="/#/?limit={{limit}}">First Page</a></li>
-		<li ng-show="prevStart"><a href="/#/?start={{prevStart}}&limit={{limit}}">Previous Page</a></li>
-		<li ng-show="nextStart"><a href="/#/?start={{nextStart}}&limit={{limit}}">Next Page</a></li>
-		<li ng-show="lastStart"><a href="/#/?start={{lastStart}}&limit={{limit}}">Last Page</a></li>
-	</ul>
+  <ul class="inline">
+    <li ng-show="showFirstPageLink()"><a href="/#/?limit={{limit}}&q={{qStr}}">First Page</a></li>
+    <li ng-show="prevStart"><a href="/#/?start={{prevStart}}&limit={{limit}}&q={{qStr}}">Previous Page</a></li>
+    <li ng-show="nextStart"><a href="/#/?start={{nextStart}}&limit={{limit}}&q={{qStr}}">Next Page</a></li>
+    <li ng-show="lastStart"><a href="/#/?start={{lastStart}}&limit={{limit}}&q={{qStr}}">Last Page</a></li>
+  </ul>
 </div>

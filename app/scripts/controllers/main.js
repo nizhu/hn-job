@@ -4,13 +4,38 @@ angular.module('hnhtApp')
   .controller('MainCtrl', function ($scope, $location, items) {
     $scope.location = $location;
     var limit = ($location.search()).limit || 10;
-    var start = ($location.search()).start || 0;
+    var start = parseInt(($location.search()).start, 10) || 0;
     var sigil = ($location.search()).sigil || '5803764-367ff';
+    var q = [];
+    if (($location.search()).q){
+      q = ($location.search()).q.split(' ');
+    }
+
+    $scope.keywords = q;
+    var contains = function(a, obj) {
+      for (var i = 0; i < a.length; i++) {
+        if (a[i] === obj) {
+          return true;
+        }
+      }
+      return false;
+    };
+
+    var removeElement = function(a, obj){
+      for (var i = 0; i < a.length; i++) {
+        if (a[i] === obj) {
+          a.splice(i, 1);
+          return true;
+        }
+      }
+      return false;
+    };
 
     items.get({
       limit: limit,
       start: start,
-      sigil: sigil
+      sigil: sigil,
+      q: q.join(' ')
     }, function (data){
       $scope.results = data.results;
       var total = data.hits;
@@ -44,25 +69,38 @@ angular.module('hnhtApp')
       } else {
         $scope.lastStart = total - sizeLastPage;
       }
-
-      // First page link should not appear if it is already the first page
-      $scope.showFirstPageLink = function () {
-        if (start <= 0){
-          return false;
-        } else {
-          return true;
-        }
-      };
-
+      $scope.total = total;
+      $scope.start = start;
+      $scope.end = start + $scope.results.length;
     });
 
-    $scope.$watch('location.search()', function(){
-      $scope.limit = ($location.search()).limit;
-    }, true);
-    $scope.$watch('location.search()', function(){
-      $scope.start = ($location.search()).start;
-    }, true);
-    $scope.$watch('location.search()', function(){
-      $scope.sigil = ($location.search()).sigil;
-    }, true);
+    // First page link should not appear if it is already the first page
+    $scope.showFirstPageLink = function () {
+      if (start <= 0){
+        return false;
+      } else {
+        return true;
+      }
+    };
+
+    $scope.addKeyword = function(){
+      if (!contains(q, $scope.keywordInput)){
+        var qStr = $scope.qStr;
+        if (qStr === ''){
+          qStr = $scope.keywordInput;
+        } else {
+          qStr =  qStr + ' ' + $scope.keywordInput;
+        }
+        $location.path('/').search('start=' + start + '&limit=' + limit + '&q=' + qStr);
+      }
+    };
+
+    $scope.removeKeyword = function(keyword){
+      if (removeElement(q, keyword)){
+        var qStr = q.join(' ');
+        $location.path('/').search('start=' + start + '&limit=' + limit + '&q=' + qStr);
+      }
+    };
+
+    $scope.qStr =  q.join(' ');
   });
