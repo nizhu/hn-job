@@ -6,7 +6,7 @@ Additional features to make job hunting easier:
 * Shows only top level comments where the jobs usually, if not always, are  
 * Keyword filtering  
 
-You can find it running live on [GitHub](http://nizhu.github.io/hn-job/)  
+You can find it running live on [GitHub](http://nizhu.github.io/hn-jobs/)  
 
 To build it yourself, first install nodejs, grunt and bower.
 
