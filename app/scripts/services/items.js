@@ -9,7 +9,7 @@ angular.module('hnResource', ['ngResource'])
         params: {
           'highlight[markup_items]': true,
           'q': 'san+bay',
-          'filter[fields][parent_sigid]': '5970187-99581',
+          'filter[fields][parent_sigid]': '6139927-1542d',
           'filter[fields][type]': 'comment',
           'sortby': 'create_ts desc',
           'limit': 10,
