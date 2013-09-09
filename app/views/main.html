@@ -17,20 +17,22 @@
     <li ng-click="removeKeyword(keyword)" class="keyword" ng-repeat="keyword in keywords">{{keyword}}  X</li>
   </ul>
 </div>
-<div ng-show="results.length">Showing {{start + 1}} to {{end}} of {{total}}</div>
-<ul>
-  <li class="job" ng-repeat="result in results">
-    <div>Posted by <a href="https://news.ycombinator.com/user?id={{result.item.username}}">{{result.item.username}}</a> at {{result.item.create_ts}} - <a href="https://news.ycombinator.com/item?id={{result.item.id}}">Link</a></div>
-    <hr/>
-    <div ng-bind-html-unsafe="result.item.text"></div>
-  </li>
-</ul>
-<div ng-hide="results.length">No results found</div>
-<div id="pagination">
-  <ul class="inline">
-    <li ng-show="showFirstPageLink()"><a href="#/?limit={{limit}}&q={{qStr}}">First Page</a></li>
-    <li ng-show="prevStart"><a href="#/?start={{prevStart}}&limit={{limit}}&q={{qStr}}">Previous Page</a></li>
-    <li ng-show="nextStart"><a href="#/?start={{nextStart}}&limit={{limit}}&q={{qStr}}">Next Page</a></li>
-    <li ng-show="lastStart"><a href="#/?start={{lastStart}}&limit={{limit}}&q={{qStr}}">Last Page</a></li>
+<div class="ng-cloak">
+  <div ng-show="results.length">Showing {{start + 1}} to {{end}} of {{total}}</div>
+  <ul>
+    <li class="job" ng-repeat="result in results">
+      <div>Posted by <a href="https://news.ycombinator.com/user?id={{result.item.username}}">{{result.item.username}}</a> at {{result.item.create_ts}} - <a href="https://news.ycombinator.com/item?id={{result.item.id}}">Link</a></div>
+      <hr/>
+      <div ng-bind-html-unsafe="result.item.text"></div>
+    </li>
   </ul>
+  <div ng-hide="results.length">No results found</div>
+  <div id="pagination">
+    <ul class="inline">
+      <li ng-show="showFirstPageLink()"><a href="#/?limit={{limit}}&q={{qStr}}">First Page</a></li>
+      <li ng-show="prevStart"><a href="#/?start={{prevStart}}&limit={{limit}}&q={{qStr}}">Previous Page</a></li>
+      <li ng-show="nextStart"><a href="#/?start={{nextStart}}&limit={{limit}}&q={{qStr}}">Next Page</a></li>
+      <li ng-show="lastStart"><a href="#/?start={{lastStart}}&limit={{limit}}&q={{qStr}}">Last Page</a></li>
+    </ul>
+  </div>
 </div>
